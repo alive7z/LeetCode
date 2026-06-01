@@ -11,17 +11,10 @@ public:
                 }
             }
         }
-        for(int i = 0; i < r.size(); i++) {
-            if(r[i]) {
-                for(int j = 0; j < c.size(); j++) {
+        for(int i = 0; i < row; i++) {
+            for(int j = 0; j < col; j++) {
+                if(r[i] || c[j]) {
                     matrix[i][j] = 0;
-                }
-            }
-        }
-        for(int i = 0; i < c.size(); i++) {
-            if(c[i]) {
-                for(int j = 0; j < r.size(); j++) {
-                    matrix[j][i] = 0;
                 }
             }
         }
