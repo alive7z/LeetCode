@@ -6,9 +6,9 @@ public:
             if(bestBuy > prices[i]) {
                 bestBuy = prices[i];
                 totalProfit = 0;
-            } else {
-                totalProfit = max(totalProfit, prices[i] - bestBuy);
+                continue;
             }
+            totalProfit = max(totalProfit, prices[i] - bestBuy);
         }
         return totalProfit;
     }
