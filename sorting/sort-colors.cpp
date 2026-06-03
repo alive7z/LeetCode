@@ -4,7 +4,7 @@ public:
         int i = 0, j = 0, k = nums.size() - 1;
         while(j <= k) {
             if(nums[j] == 2) {
-                swap(nums[i], nums[k]);
+                swap(nums[j], nums[k]);
                 k--;
             } else if(nums[j] == 1) {
                 j++;
