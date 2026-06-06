@@ -17,12 +17,15 @@ public:
             }
         }
 
-        while(second <= col) {
-            int mid = second + (col - second) / 2;
+        if(second == -1) return false;
+
+        int left = 0;
+        while(left <= col) {
+            int mid = left + (col - left) / 2;
             if(matrix[second][mid] == target) {
                 return true;
             } else if(target > matrix[second][mid]) {
-                second = mid + 1;
+                left = mid + 1;
             } else {
                 col = mid - 1;
             }
