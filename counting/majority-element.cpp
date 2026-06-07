@@ -6,8 +6,7 @@ public:
             if(count == 0) {
                 ans = nums[i];
                 count++;
-            }
-            if(nums[i] == ans) {
+            } else if(nums[i] == ans) {
                 count++;
             } else {
                 count--;
