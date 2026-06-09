@@ -4,7 +4,7 @@ public:
         unordered_set<int> st(nums.begin(), nums.end());
         int ans = 0;
         for(int val : st) {
-            if(mp.find(val - 1) == st.end()) {
+            if(st.find(val - 1) == st.end()) {
                 int temp = val;
                 int cnt = 1;
                 while(st.find(temp + 1) != st.end()) {
