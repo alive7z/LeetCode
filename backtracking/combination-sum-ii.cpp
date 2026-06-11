@@ -6,12 +6,12 @@ public:
             return;
         }
         for(int i = idx; i < candidates.size(); i++) {
-            while(i > idx && candidates[i] == candidates[i-1]) continue;
+            if(i > idx && candidates[i] == candidates[i-1]) continue;
             if(candidates[i] <= target) {
                 temp.push_back(candidates[i]);
                 combination(candidates, st, temp, target - candidates[i], i + 1);
                 temp.pop_back();
-            }
+            } else break;
         }
     }
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
