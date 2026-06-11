@@ -10,17 +10,18 @@ public:
             i++;
         }
         int div = fact / n;
+        k--;
         int mod = k % div;
-        int pos = (k / div) + 1;
-        nums.push_back(pos);
-        for(int i = 0; i < n; i++) {
-            if((i+1) != pos) {
-                nums.push_back(i+1);
+        int pos = k / div;
+        nums.push_back(pos + 1);
+        for(int i = 1; i <= n; i++) {
+            if(i != pos + 1) {
+                nums.push_back(i);
             }
         }
-        for(int k = 0; k < mod - 1; k++) {
+        for(int k = 0; k < mod; k++) {
             int i = nums.size() - 1;
-            while(i > 0 && nums[i] < nums[i-1]) i--;
+            while(i > 0 && nums[i] <= nums[i-1]) i--;
             for(int j = nums.size() - 1; j >= i; j--) {
                 if(nums[j] > nums[i-1]) {
                     swap(nums[j], nums[i-1]);
