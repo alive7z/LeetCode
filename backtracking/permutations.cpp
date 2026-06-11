@@ -17,6 +17,7 @@ public:
         permutations(nums, ans);
     }
     vector<vector<int>> permute(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
         vector<vector<int>> ans;
         ans.push_back(nums);
         permutations(nums, ans);
