@@ -1,29 +1,24 @@
 class Solution {
 public:
-
-    set<vector<int>> s;
-
-    void allCombination(vector<int>& candidates, vector<vector<int>>& ans, vector<int>& combinations, int i, int target) {
-        if(i == candidates.size() || target < 0) {
+    void combinations(vector<int>& candidates, vector<vector<int>>& ans, vector<int> temp, int target, int i, int sum) {
+        if(i == candidates.size()) {
+            if(sum == target) {
+                ans.push_back(temp);
+            }
             return;
         }
-        if(target == 0) {
-            if(s.find(combinations) == s.end()) {
-                ans.push_back(combinations);
-                s.insert(combinations);
-            }
+        if(sum + candidates[i] <= target) {
+            temp.push_back(candidates[i]);
+            combinations(candidates, ans, temp, target, i, sum + candidates[i]);
+            temp.pop_back();
         }
-        combinations.push_back(candidates[i]);
-        allCombination(candidates, ans, combinations, i + 1, target - candidates[i]);
-        allCombination(candidates, ans, combinations, i, target - candidates[i]);
-        combinations.pop_back();
-        allCombination(candidates, ans, combinations, i + 1, target);
+        combinations(candidates, ans, temp, target, i + 1, sum);
     }
-
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         vector<vector<int>> ans;
-        vector<int> combinations;
-        allCombination(candidates, ans, combinations, 0, target);
+        vector<int> temp;
+        int sum = 0;
+        combinations(candidates, ans, temp, target, 0, sum);
         return ans;
     }
 };
