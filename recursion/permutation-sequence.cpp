@@ -2,23 +2,27 @@ class Solution {
 public:
     string getPermutation(int n, int k) {
         if(n == 1) return "1";
+
         vector<int> nums;
+
         int fact = 1;
-        int i = 1;
-        while(i <= n) {
+        for(int i = 1; i <= n; i++) {
             fact *= i;
-            i++;
         }
-        int div = fact / n;
+
         k--;
+
+        int div = fact / n;
         int mod = k % div;
         int pos = k / div;
+
         nums.push_back(pos + 1);
         for(int i = 1; i <= n; i++) {
             if(i != pos + 1) {
                 nums.push_back(i);
             }
         }
+
         for(int k = 0; k < mod; k++) {
             int i = nums.size() - 1;
             while(i > 0 && nums[i] <= nums[i-1]) i--;
@@ -30,10 +34,13 @@ public:
             }
             reverse(nums.begin() + i, nums.end());
         }
+
         string str = "";
+        
         for(int val : nums) {
             str += to_string(val);
         }
+
         return str;
     }
 };
