@@ -11,11 +11,11 @@ public:
         subSets(nums, temp, st, i + 1);
     }
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
         vector<int> temp;
         set<vector<int>> st;
         subSets(nums, temp, st, 0);
         vector<vector<int>> ans(st.begin(), st.end());
-        sort(ans.begin(), ans.end());
         return ans;
     }
 };
