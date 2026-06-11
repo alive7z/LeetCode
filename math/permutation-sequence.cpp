@@ -10,11 +10,9 @@ public:
             fact *= i;
         }
 
-        k--;
-
         int div = fact / n;
-        int mod = k % div;
-        int pos = k / div;
+        int mod = (k - 1) % div;
+        int pos = (k - 1) / div;
 
         nums.push_back(pos + 1);
         for(int i = 1; i <= n; i++) {
@@ -36,7 +34,7 @@ public:
         }
 
         string str = "";
-        
+
         for(int val : nums) {
             str += to_string(val);
         }
