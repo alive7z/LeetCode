@@ -1,6 +1,7 @@
 class Solution {
 public:
     string getPermutation(int n, int k) {
+        if(n == 1) return "1";
         vector<int> nums;
         int fact = 1;
         int i = 1;
