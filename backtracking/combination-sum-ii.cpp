@@ -1,12 +1,11 @@
 class Solution {
 public:
     void combinations(vector<int>& candidates, set<vector<int>>& st, vector<int> temp, int target, int i) {
-        if(i == candidates.size()) {
-            if(target == 0) {
-                st.insert(temp);
-            }
+        if(target == 0) {
+            st.insert(temp);
             return;
         }
+        if(i == candidates.size()) return;
         if(candidates[i] <= target) {
             temp.push_back(candidates[i]);
             combinations(candidates, st, temp, target - candidates[i], i + 1);
