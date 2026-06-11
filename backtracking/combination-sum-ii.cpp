@@ -1,23 +1,24 @@
 class Solution {
 public:
-    void combinations(vector<int>& candidates, set<vector<int>>& st, vector<int> temp, int target, int i) {
+    void combination(vector<int>& candidates, set<vector<int>>& st, vector<int> temp, int target, int idx) {
         if(target == 0) {
             st.insert(temp);
             return;
         }
-        if(i == candidates.size()) return;
-        if(candidates[i] <= target) {
-            temp.push_back(candidates[i]);
-            combinations(candidates, st, temp, target - candidates[i], i + 1);
-            temp.pop_back();
+        for(int i = idx; i < candidates.size(); i++) {
+            while(i > idx && candidates[i] == candidates[i-1]) continue;
+            if(candidates[i] <= target) {
+                temp.push_back(candidates[i]);
+                combination(candidates, st, temp, target - candidates[i], i + 1);
+                temp.pop_back();
+            }
         }
-        combinations(candidates, st, temp, target, i + 1);
     }
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
         sort(candidates.begin(), candidates.end());
         set<vector<int>> st;
         vector<int> temp;
-        combinations(candidates, st, temp, target, 0);
+        combination(candidates, st, temp, target, 0);
         vector<vector<int>> ans(st.begin(), st.end());
         return ans;
     }
