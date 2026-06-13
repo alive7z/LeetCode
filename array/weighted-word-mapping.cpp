@@ -1,16 +1,18 @@
 class Solution {
 public:
     string mapWordWeights(vector<string>& words, vector<int>& weights) {
-        string ans = "";
-        for(string word : words) {
+        string res(words.size(), 0);
+        int i = 0;
+
+        for (auto& word : words) {
             int sum = 0;
-            for(char val : word) {
-                sum += weights[val - 'a'];
-            }
-            int a = sum % 26;
-            char c = 'z' - a;
-            ans += c;
+            for (auto& c : word)
+                sum += weights[(c & 31) - 1];
+            int q = (sum * 2521) >> 16;
+            int r = sum - q * 26;
+            res[i++] = 'z' - r;
         }
-        return ans; 
+
+        return res;
     }
 };
