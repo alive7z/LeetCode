@@ -15,11 +15,8 @@ public:
                 cnt += store[i];
                 temp -= val;
             } else {
-                while(i <= temp) {
-                    cnt++;
-                    temp -= i;
-                    store[i]--;
-                }
+                int maxi = min(store[i], temp / i);
+                cnt += maxi;
                 break;
             }
         }
