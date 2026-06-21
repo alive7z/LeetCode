@@ -9,12 +9,18 @@ public:
             store[val]++;
         }
         for(int i = 1; i < store.size(); i++) {
-            while(store[i]) {
-                if(i <= temp) {
+            if(store[i] == 0) continue;
+            long long val = 1LL * store[i] * i;
+            if(val <= temp) {
+                cnt += store[i];
+                temp -= val;
+            } else {
+                while(i <= temp) {
                     cnt++;
                     temp -= i;
                     store[i]--;
-                } else break;
+                }
+                break;
             }
         }
         return cnt;
