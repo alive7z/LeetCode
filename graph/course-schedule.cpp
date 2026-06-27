@@ -4,17 +4,19 @@ public:
         vector<vector<int>> adj(numCourses);
         vector<int> inDegree(numCourses, 0);
         for(auto itr : prerequisites) {
+            int u = itr[0];
+            int v = itr[1];
             adj[v].push_back(u);
             inDegree[u]++;
         }
-        vector<int> queue;
+        queue<int> q;
         for(int i = 0; i < inDegree.size(); i++) {
             if(inDegree[i] == 0) {
                 q.push(i);
             }
         }
         int count = 0;
-        while(!queue.empty()) {
+        while(!q.empty()) {
             int node = q.front();
             q.pop();
             count++;
