@@ -4,28 +4,25 @@ public:
         int count = 0;
         int m = grid.size();
         int n = grid[0].size();
-        vector<vector<bool>> visited(m, vector<bool>(n));
+        int direction[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+        vector<vector<bool>> visited(m, vector<bool>(n, false));
         for(int i = 0; i < m; i++) {
             for(int j = 0; j < n; j++) {
                 if(!visited[i][j] && grid[i][j] == '1') {
                     queue<pair<int,int>> q;
                     q.push({i, j});
+                    visited[i][j] = true;
                     while(!q.empty()) {
                         int u = q.front().first;
                         int v = q.front().second;
-                        visited[u][v] = true;
                         q.pop();
-                        if(u-1 >= 0 && !visited[u-1][v] && grid[u-1][v] == '1') {
-                            q.push({u-1, v});
-                        }
-                        if(u+1 < m && !visited[u+1][v] && grid[u+1][v] == '1') {
-                            q.push({u+1, v});
-                        }
-                        if(v-1 >= 0 && !visited[u][v-1] && grid[u][v-1] == '1') {
-                            q.push({u, v-1});
-                        }
-                        if(v+1 < n && !visited[u][v+1] && grid[u][v+1] == '1') {
-                            q.push({u, v+1});
+                        for(auto itr : direction) {
+                            int nu = u + itr[0];
+                            int nv = v + itr[1];
+                            if(nu >= 0 && nu < m && nv >= 0 && nv < n && !visited[nu][nv] && grid[nu][nv] == '1') {
+                                visited[nu][nv] = true;
+                                q.push({nu, nv});
+                            }
                         }
                     }
                     count++;
