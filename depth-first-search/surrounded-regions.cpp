@@ -8,28 +8,31 @@ public:
         for(int i = 0; i < m; i++) {
             if(board[i][0] == 'O') {
                 q.push({i, 0});
+                board[i][0] = 'Z';
             }
         }
         for(int i = 0; i < m; i++) {
             if(board[i][n-1] == 'O') {
                 q.push({i, n-1});
+                board[i][n-1] = 'Z';
             }
         }
         for(int i = 1; i < n - 1; i++) {
             if(board[0][i] == 'O') {
                 q.push({0, i});
+                board[0][i] = 'Z';
             }
         }
         for(int i = 1; i < n - 1; i++) {
             if(board[m-1][i] == 'O') {
                 q.push({m-1, i});
+                board[m-1][i] = 'Z';
             }
         }
         int direction[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
         while(!q.empty()) {
             int u = q.front().first;
             int v = q.front().second;
-            board[u][v] = 'Z';
             q.pop();
             for(auto itr : direction) {
                 int nu = u + itr[0];
