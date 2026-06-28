@@ -39,6 +39,7 @@ public:
                 int nv = v + itr[1];
                 if(nu >= 0 && nu < m && nv >= 0 && nv < n && board[nu][nv] != 'Z' && board[nu][nv] == 'O') {
                     q.push({nu, nv});
+                    board[nu][nv] = 'Z';
                 }
             }
         }
