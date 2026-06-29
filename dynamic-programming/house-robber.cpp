@@ -1,16 +1,17 @@
 class Solution {
 public:
-    int maxAmount(vector<int>& nums, vector<int>& dp, int idx) {
-        if(idx == 0) return nums[idx];
-        if(idx < 0) return 0;
-        if(dp[idx] != -1) return dp[idx];
-        int rob = nums[idx] + maxAmount(nums, dp, idx - 2);
-        int skip = 0 + maxAmount(nums, dp, idx - 1);
-        return dp[idx] = max(rob, skip);
-    }
     int rob(vector<int>& nums) {
         int n = nums.size() - 1;
         vector<int> dp(n + 1, -1);
-        return maxAmount(nums, dp, n);
+        dp[0] = nums[0];
+        for(int i = 1; i < nums.size(); i++) {
+            int rob = INT_MIN;
+            if(i > 1) {
+                rob = nums[i] + dp[i - 2];
+            }
+            int skip = 0 + dp[i - 1];
+            dp[i] = max(rob, skip);
+        }
+        return dp[n];
     }
 };
