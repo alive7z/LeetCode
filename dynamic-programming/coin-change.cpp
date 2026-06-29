@@ -1,20 +1,23 @@
 class Solution {
 public:
-    void combinations(vector<int>& coins, int amount, int i, int& ans, int count) {
+    void combinations(vector<int>& coins, int amount, int cnt, int i, int& ans) {
+        if (cnt >= ans) return;
         if(i == coins.size()) {
             if(amount == 0) {
-                ans = min(ans, count);
+                ans = min(ans, cnt);
             }
             return;
         }
-        if(amount >= coins[i]) {
-            combinations(coins, amount - coins[i], i, ans, count + 1);
-        } 
-        combinations(coins, amount, i + 1, ans, count);
+        if(coins[i] <= amount) {
+            combinations(coins, amount - coins[i], cnt + 1, i, ans);
+        }
+        combinations(coins, amount, cnt, i + 1, ans);
     }
     int coinChange(vector<int>& coins, int amount) {
-        int count = 0, i = 0, ans = INT_MAX;
-        combinations(coins, amount, i, ans, count);
+        if(coins.size() == 0 && amount > 0) return -1;
+        if(amount == 0) return 0;
+        int cnt = 0, ans = INT_MAX;
+        combinations(coins, amount, cnt, 0, ans);
         return ans == INT_MAX ? -1 : ans;
     }
 };
