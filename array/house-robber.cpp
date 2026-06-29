@@ -1,9 +1,9 @@
 class Solution {
 public:
     int rob(vector<int>& nums) {
-        int n = nums.size() - 1;
+        int n = nums.size();
         if (n == 1) return nums[0];
-        vector<int> dp(n + 1, -1);
+        vector<int> dp(n, -1);
         dp[0] = nums[0];
         dp[1] = max(nums[0], nums[1]);
         for(int i = 2; i < nums.size(); i++) {
@@ -11,6 +11,6 @@ public:
             int skip = 0 + dp[i - 1];
             dp[i] = max(rob, skip);
         }
-        return dp[n];
+        return dp[n - 1];
     }
 };
