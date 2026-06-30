@@ -1,19 +1,18 @@
 class Solution {
 public:
-    int combinations(vector<vector<int>>& dp, int i, int j, int m, int n) {
-        if(i == m - 1 && j == n - 1) {
-            return dp[i][j] = 1;
-        }
-        if(i >= m || j >= n) {
-            return 0;
-        }
-        if(dp[i][j] != -1) return dp[i][j];
-        int right = combinations(dp, i + 1, j, m, n);
-        int bottom = combinations(dp, i, j + 1, m, n);
-        return dp[i][j] = right + bottom;
-    }
     int uniquePaths(int m, int n) {
         vector<vector<int>> dp(m, vector<int> (n, -1));
-        return combinations(dp, 0, 0, m, n);
+        for(int i = m - 1; i >= 0; i++) {
+            for(int j = n - 1; j >= 0; j++) {
+                if(i == m - 1 && j == n - 1) {
+                    dp[i][j] = 1;
+                } else {
+                    int right = (i < m - 1) ? dp[i+1][j] : 0;
+                    int bottom = (j < n - 1) ? dp[i][j+1] : 0;
+                    dp[i][j] = right + bottom;
+                }
+            }
+        }
+        return dp[0][0];
     }
 };
