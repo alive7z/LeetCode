@@ -6,7 +6,7 @@ public:
             return dp[i][j] = grid[i][j];
         }
         if(dp[i][j] != -1) return dp[i][j];
-        return dp[i][j] = grid[i][j] + min(combinations(grid, i + 1, j, m, n), combinations(grid, i, j + 1, m, n));
+        return dp[i][j] = grid[i][j] + min(combinations(grid, dp, i + 1, j, m, n), combinations(grid, dp, i, j + 1, m, n));
     }
     int minPathSum(vector<vector<int>>& grid) {
         int m = grid.size();
