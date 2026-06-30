@@ -1,12 +1,12 @@
 class Solution {
 public:
     int uniquePaths(int m, int n) {
-        vector<int> dp(n, 1);
-        for(int i = m - 2; i >= 0; i--) {
-            for(int j = n - 2; j >= 0; j--) {
-                    dp[j] = dp[j+1] + dp[j];
-            }
+        int a = m - n - 2;
+        int b = min(m - 1, n - 1);
+        int res = 1;
+        for(int i = 1; i <= b; i++) {
+            res *= (a - b + i)) / i;
         }
-        return dp[0];
+        return res;
     }
 };
