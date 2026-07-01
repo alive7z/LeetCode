@@ -9,10 +9,10 @@ public:
         if(sum % 2 != 0) return false;
         int target = sum / 2;
 
-        vector<int> prev(target+1, 0);
+        vector<bool> prev(target+1, false);
 
         for(int i = 0; i < m; i++) {
-            vector<int> curr(target+1, 0);
+            vector<bool> curr(target+1, false);
             for(int j = 0; j <= target; j++) {
                 if(i == 0) {
                     curr[j] = j == nums[0];
@@ -29,6 +29,7 @@ public:
                 int notPick = prev[j];
                 curr[j] = pick || notPick;
             }
+            prev = curr;
         }
         return prev[target];
     }
