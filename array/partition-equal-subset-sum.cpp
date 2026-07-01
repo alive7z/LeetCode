@@ -14,8 +14,16 @@ public:
 
         if(nums[0] <= target) dp[0][nums[0]] = true;
 
-        for(int i = 1; i < m; i++) {
-            for(int j = 1; j <= target; j++) {
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j <= target; j++) {
+                if(i == 0) {
+                    dp[i][j] = j == nums[0];
+                    continue;
+                }
+                if(j == 0) {
+                    dp[i][j] = true;
+                    continue;
+                }
                 int pick = false;
                 if(nums[i] <= j) {
                     pick = dp[i-1][j - nums[i]];
