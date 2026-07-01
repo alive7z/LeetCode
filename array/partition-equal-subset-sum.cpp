@@ -1,25 +1,29 @@
 class Solution {
 public:
-    bool combinations(vector<int>& nums, int target, int i) {
-        if(i == 0) {
-            if(nums[i] == target) return true;
-            return false;
-        }
-        if(target == 0) return true;
-        bool pick = false;
-        if(nums[i] <= target) {
-            pick = combinations(nums, target - nums[i], i - 1);
-        }
-        bool notPick = combinations(nums, target, i - 1);
-        return pick || notPick;
-    }
     bool canPartition(vector<int>& nums) {
         int sum = 0;
+        int m = nums.size();
         for(int val : nums) {
             sum += val;
         }
         if(sum % 2 != 0) return false;
         int target = sum / 2;
-        return combinations(nums, target, nums.size() - 1);
+        vector<vector<bool>> dp(m, vector<bool> (target+1, false));
+
+        for(int i = 0; i < m; i++) dp[i][0] = true;
+
+        if(nums[0] <= target) dp[0][nums[0]] = true;
+
+        for(int i = 1; i < m; i++) {
+            for(int j = 1; j <= target; j++) {
+                int pick = false;
+                if(nums[i] <= j) {
+                    pick = dp[i-1][j - nums[i]];
+                }
+                int notPick = dp[i-1][j];
+                dp[i][j] = pick || notPick;
+            }
+        }
+        return dp[m-1][target];
     }
 };
