@@ -14,12 +14,12 @@ public:
         for(int i = 0; i < m; i++) {
             vector<bool> curr(target+1, false);
             for(int j = 0; j <= target; j++) {
-                if(i == 0) {
-                    curr[j] = j == nums[0];
-                    continue;
-                }
                 if(j == 0) {
                     curr[j] = true;
+                    continue;
+                }
+                if(i == 0) {
+                    curr[j] = j == nums[0];
                     continue;
                 }
                 int pick = false;
