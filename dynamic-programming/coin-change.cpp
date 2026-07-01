@@ -1,23 +1,28 @@
 class Solution {
 public:
-    int minimumNumberOfCoins(vector<int>& coins, int amount, int i) {
-        if(i == 0) {
-            if(amount % coins[i] == 0) {
-                return amount / coins[i];
-            }
-            return 1e9;
-        }
-        if(amount == 0) return 0;
-        int notPick = minimumNumberOfCoins(coins, amount, i - 1);
-        int pick = INT_MAX;
-        if(amount >= coins[i]) {
-            pick = minimumNumberOfCoins(coins, amount - coins[i], i);
-        }
-        return min(pick, notPick);
-    }
     int coinChange(vector<int>& coins, int amount) {
-        int ans = minimumNumberOfCoins(coins, amount, coins.size() - 1);
-        if(ans >= 1e9) return -1;
-        return ans;
+        int n = coins.size();
+        vector<int> prev(amount + 1, 0);
+        for(int j = 0; j <= amount; j++) {
+            if(j % coins[0] == 0) {
+                prev[j] = j / coins[0];
+            } else {
+                prev[j] = 1e9;
+            }
+        }
+        for(int i = 1; i < n; i++) {
+            vector<int> curr(amount + 1, 0);
+            for(int j = 0; j <= amount; j++) {
+                int pick = INT_MAX;
+                if(j >= coins[i]) {
+                    pick = 1 + curr[j-coins[i]];
+                }
+                int notPick = 0 + prev[j];
+                curr[j] = min(pick, notPick);
+            }
+            prev = curr;
+        }
+        if(prev[amount] >= 1e9) return -1;
+        return prev[amount];
     }
 };
