@@ -8,26 +8,28 @@ public:
         }
         if(sum % 2 != 0) return false;
         int target = sum / 2;
-        vector<vector<bool>> dp(m, vector<bool> (target+1, false));
+
+        vector<int> prev(target+1, 0);
 
         for(int i = 0; i < m; i++) {
+            vector<int> curr(target+1, 0);
             for(int j = 0; j <= target; j++) {
                 if(i == 0) {
-                    dp[i][j] = j == nums[0];
+                    curr[j] = j == nums[0];
                     continue;
                 }
                 if(j == 0) {
-                    dp[i][j] = true;
+                    curr[j] = true;
                     continue;
                 }
                 int pick = false;
                 if(nums[i] <= j) {
-                    pick = dp[i-1][j - nums[i]];
+                    pick = prev[j - nums[i]];
                 }
-                int notPick = dp[i-1][j];
-                dp[i][j] = pick || notPick;
+                int notPick = prev[j];
+                curr[j] = pick || notPick;
             }
         }
-        return dp[m-1][target];
+        return prev[target];
     }
 };
