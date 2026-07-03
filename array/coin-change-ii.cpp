@@ -12,11 +12,11 @@ public:
 
         for(int i = 1; i < n; i++) {
             for(int j = 0; j <= amount; j++) {
+                int notPick = dp[i-1][j];
                 int pick = 0;
                 if(coins[i] <= j) {
                     pick = dp[i][j - coins[i]];
                 }
-                int notPick = dp[i-1][j];
                 dp[i][j] = pick + notPick;
             }
         }
