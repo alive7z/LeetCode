@@ -4,7 +4,7 @@ public:
         int n = coins.size();
         if(n == 0) return 0;
 
-        vector<long long int> prev(amount + 1, 0);
+        vector<unsigned long long int> prev(amount + 1, 0);
         
         for(int a = 0; a <= amount; a++) {
             if(a % coins[0] == 0) {
