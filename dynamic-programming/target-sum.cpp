@@ -22,7 +22,7 @@ public:
         }
 
         for(int i = 1; i < n; i++) {
-            for(int j = 0; j <= goal; j++) {
+            for(int j = goal; j >= 0; j--) {
                 int pick = 0;
                 if(nums[i] <= j) {
                     pick = prev[j-nums[i]];
