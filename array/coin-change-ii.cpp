@@ -4,7 +4,7 @@ public:
         int n = coins.size();
         if(n == 0) return 0;
 
-        vector<vector<int>> dp(n, vector<int> (amount + 1, 0));
+        vector<vector<long long>> dp(n, vector<long long> (amount + 1, 0));
         
         for(int a = 0; a <= amount; a++) {
             if(a % coins[0] == 0) {
