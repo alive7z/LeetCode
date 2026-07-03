@@ -2,6 +2,8 @@ class Solution {
 public:
     int change(int amount, vector<int>& coins) {
         int n = coins.size();
+        if(n == 0) return 0;
+
         vector<vector<int>> dp(n, vector<int> (amount + 1, 0));
         
         for(int a = 0; a <= amount; a++) {
