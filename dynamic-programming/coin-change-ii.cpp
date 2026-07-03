@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int change(int amount, vector<int>& coins) {
+    long long change(int amount, vector<int>& coins) {
         int n = coins.size();
         if(n == 0) return 0;
 
@@ -14,8 +14,8 @@ public:
 
         for(int i = 1; i < n; i++) {
             for(int j = 0; j <= amount; j++) {
-                int notPick = dp[i-1][j];
-                int pick = 0;
+                long long notPick = dp[i-1][j];
+                long long pick = 0;
                 if(coins[i] <= j) {
                     pick = dp[i][j - coins[i]];
                 }
