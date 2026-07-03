@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int subsequence(vector<vector<int>>& dp, string text1, string text2, int i, int j) {
+    int subsequence(vector<vector<unsigned long long int>>& dp, string text1, string text2, int i, int j) {
         if(i < 0 || j < 0) return 0;
         if(dp[i][j] != -1) return dp[i][j];
 
@@ -12,7 +12,7 @@ public:
     }
     int longestCommonSubsequence(string text1, string text2) {
         int m = text1.size(), n = text2.size();
-        vector<vector<int>> dp(m, vector<int> (n, -1));
+        vector<vector<unsigned long long int>> dp(m, vector<unsigned long long int> (n, -1));
         return subsequence(dp, text1, text2, m - 1, n - 1);
     }
 };
