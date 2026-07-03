@@ -6,7 +6,7 @@ public:
         for(int val : nums) {
             totalSum += val;
         }
-        if((totalSum - target) % 2 != 0 || (totalSum - target) < 0) return 0;
+        if (abs(target) > totalSum || (totalSum - target) % 2 != 0) return 0;
         int goal = (totalSum - target) / 2;
 
         vector<int> prev(goal + 1, 0);
@@ -22,16 +22,14 @@ public:
         }
 
         for(int i = 1; i < n; i++) {
-            vector<int> curr(goal + 1, 0);
             for(int j = 0; j <= goal; j++) {
                 int pick = 0;
                 if(nums[i] <= j) {
                     pick = prev[j-nums[i]];
                 }
                 int notPick = prev[j];
-                curr[j] = pick + notPick;
+                prev[j] = pick + notPick;
             }
-            prev = curr;
         }
         
         return prev[goal];
