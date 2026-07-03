@@ -5,7 +5,9 @@ public:
         vector<vector<int>> dp(n, vector<int> (amount + 1, 0));
         
         for(int a = 0; a <= amount; a++) {
-            dp[0][a] = (a % coins[0] == 0) ? 1 : 0;
+            if(a % coins[0] == 0) {
+                dp[0][a] = 1;
+            }
         }
 
         for(int i = 1; i < n; i++) {
