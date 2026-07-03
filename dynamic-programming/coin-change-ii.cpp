@@ -13,10 +13,10 @@ public:
         }
 
         for(int i = 1; i < n; i++) {
-            vector<long long int> curr(amount + 1, 0);
+            vector<unsigned long long int> curr(amount + 1, 0);
             for(int j = 0; j <= amount; j++) {
-                long long int notPick = prev[j];
-                long long int pick = 0;
+                unsigned long long int notPick = prev[j];
+                unsigned long long int pick = 0;
                 if(coins[i] <= j) {
                     pick = curr[j - coins[i]];
                 }
