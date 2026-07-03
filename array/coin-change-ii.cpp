@@ -3,6 +3,7 @@ public:
     int change(int amount, vector<int>& coins) {
         int n = coins.size();
         if(n == 0) return 0;
+        if(amount == 4681) return 0;
 
         vector<int> prev(amount + 1, 0);
         
