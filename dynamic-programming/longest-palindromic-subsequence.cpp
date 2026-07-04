@@ -4,6 +4,7 @@ public:
         if(i > j) {
             return 0;
         }
+        if(i == j) return 1;
         if(s[i] == s[j]) {
             return 2 + palindrome(s, i + 1, j - 1);
         }
