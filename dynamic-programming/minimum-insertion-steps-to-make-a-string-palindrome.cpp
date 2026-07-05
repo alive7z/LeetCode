@@ -16,7 +16,8 @@ public:
                     curr[j] = max(prev[j], curr[j-1]);
                 }
             }
-            prev = curr;
+            swap(prev, curr);
+            fill(curr.begin(), curr.end(), 0);
         }
 
         return n - prev[n];
