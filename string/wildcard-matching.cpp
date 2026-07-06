@@ -26,6 +26,7 @@ public:
                     curr[j] = false;
                 }
             }
+            prev = curr;
         }
 
         return prev[n];
