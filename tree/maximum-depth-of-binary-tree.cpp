@@ -18,6 +18,7 @@ public:
         return max(leftSide, rightSide);
     }
     int maxDepth(TreeNode* root) {
+        if(root == NULL) return 0;
         return 1 + depth(root);
     }
 };
