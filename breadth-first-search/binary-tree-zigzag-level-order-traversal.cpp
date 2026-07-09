@@ -29,6 +29,7 @@ public:
                 ans.push_back(temp);
                 temp.clear();
                 flag = !flag;
+                continue;
             }
             TreeNode* node = q.front();
             q.pop();
