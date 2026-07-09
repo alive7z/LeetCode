@@ -12,9 +12,13 @@
 class Solution {
 public:
     bool isSameTree(TreeNode* p, TreeNode* q) {
-        if(p == NULL || q == NULL) return p == q;
-        bool isLeftSame = isSameTree(p -> left, q -> left);
-        bool isRightSame = isSameTree(p -> right, q -> right);
-        return isLeftSame && isRightSame && p->val == q->val;
+        if(p == NULL || q == NULL) {
+            if(p == NULL && q == NULL) return true;
+            else return false;
+        }
+        if(p -> val != q -> val) return false;
+        bool left = isSameTree(p -> left, q -> left);
+        bool right = isSameTree(p -> right, q -> right);
+        return left && right;
     }
 };
