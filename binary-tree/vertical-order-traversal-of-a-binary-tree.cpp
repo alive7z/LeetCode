@@ -18,6 +18,7 @@ public:
         dfs(root->right, i + 1, j + 1, nodes);
     }
     vector<vector<int>> verticalTraversal(TreeNode* root) {
+        if(root == NULL) return {};
         vector<vector<int>> ans;
         vector<int> temp;
         vector<pair<int, pair<int, int>>> nodes;
