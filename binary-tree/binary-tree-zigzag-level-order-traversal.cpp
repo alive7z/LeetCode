@@ -15,7 +15,7 @@ public:
         queue<TreeNode*> q;
         vector<vector<int>> ans;
         vector<int> temp;
-        bool flag = false;
+        bool flag = true;
         if(root == NULL) return {};
         q.push(root);
         while(!q.empty()) {
