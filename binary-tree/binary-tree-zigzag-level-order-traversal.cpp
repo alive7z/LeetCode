@@ -17,30 +17,24 @@ public:
         vector<int> temp;
         bool flag = false;
         if(root == NULL) return {};
-        ans.push_back({root->val});
         q.push(root);
-        q.push(NULL);
         while(!q.empty()) {
-            if(q.front() == NULL && q.size() < 2) break;
-            if(q.front() == NULL && q.size() > 1) {
-                q.push(NULL);
+            int n = q.size();
+            for(int i = 0; i < n; i++) {
+                TreeNode* node = q.front();
+                temp.push_back(node->val);
                 q.pop();
-                if(!flag) reverse(temp.begin(), temp.end());
-                ans.push_back(temp);
-                temp.clear();
-                flag = !flag;
-                continue;
+                if(node -> left != NULL) {
+                    q.push(node -> left);
+                }
+                if(node -> right != NULL) {
+                    q.push(node -> right);
+                }
             }
-            TreeNode* node = q.front();
-            q.pop();
-            if(node -> left != NULL) {
-                temp.push_back(node->left->val);
-                q.push(node -> left);
-            };
-            if(node -> right != NULL) {
-                temp.push_back(node->right->val);
-                q.push(node -> right);
-            };
+            if(!flag) reverse(temp.begin(), temp.end());
+            ans.push_back(temp);
+            temp.clear();
+            flag = !flag;
         }
         return ans;
     }
