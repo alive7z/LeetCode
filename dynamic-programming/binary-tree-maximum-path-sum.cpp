@@ -19,7 +19,7 @@ public:
         return root->val + max(left, right);;
     }
     int maxPathSum(TreeNode* root) {
-        int maxi = 0;
+        int maxi = INT_MIN;
         sum(root, maxi);
         return maxi;
     }
