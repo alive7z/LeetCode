@@ -6,7 +6,7 @@ public:
         unordered_map<int, int> mp;
         int i = 1;
         for(int val : temp) {
-            if(mp.find(val) == mp.end()) {
+            if(!mp.count(val)) {
                 mp[val] = i;
                 i++;
             }
