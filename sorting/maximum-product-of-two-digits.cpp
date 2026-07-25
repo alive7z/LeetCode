@@ -1,15 +1,21 @@
 class Solution {
 public:
     int maxProduct(int n) {
-        vector<int> vec;
         int num = n;
+        int first = INT_MIN, second = INT_MIN;
+        first = num % 10;
+        num /= 10;
         while(num != 0) {
-            vec.push_back(num % 10);
+            int dig = num % 10;
+            if(dig > first) {
+                second = first;
+                first = dig;
+            } else if(dig > second) {
+                second = dig;
+            }
             num /= 10;
         }
-        sort(vec.begin(), vec.end());
-        int size = vec.size();
-        if(size == 1) return vec[size-1];
-        return vec[size-1] * vec[size-2];
+        if(second == INT_MIN) return first;
+        return first * second;
     }
 };
