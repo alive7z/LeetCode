@@ -15,22 +15,11 @@ public:
         }
 
         if (k == nums.size()) {
-            vector<int> store(51);
-
-            for (int val : nums) {
-                store[val]++;
-            }
-
-            for (int i = 50; i >= 0; i--) {
-                if (store[i] == 1)
-                    return i;
-            }
-
-            return -1;
+            return *max_element(nums.begin(), nums.end());
         }
 
         int a = 0, b = 0;
-        
+
         for(int val : nums) {
             if(val == nums[0]) a++;
             if(val == nums[nums.size() - 1]) b++;
