@@ -8,7 +8,7 @@ public:
                 store[val]++;
             }
             for(int i = 50; i >= 0; i--) {
-                if(store[i] == 1) return store[i];
+                if(store[i] == 1) return i;
             }
             return -1;
         }
