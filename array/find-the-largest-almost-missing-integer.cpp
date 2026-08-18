@@ -15,7 +15,7 @@ public:
         int a = 0, b = 0;
         for(int val : nums) {
             if(val == nums[0]) a++;
-            else if(val == nums[nums.size() - 1]) b++;
+            if(val == nums[nums.size() - 1]) b++;
         }
         if(a == 1 && b > 1) return nums[0];
         if(a > 1 && b == 1) return nums[nums.size() - 1];
