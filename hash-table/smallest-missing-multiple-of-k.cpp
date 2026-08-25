@@ -12,7 +12,7 @@ public:
             if(store[i] == 0 && (i + 1) % k == 0) return i + 1;
         }
         while(n < 100) {
-            n *= n;
+            n += n;
         }
         return n;
     }
