@@ -11,7 +11,7 @@ public:
         for(int i = 0; i < store.size(); i++) {
             if(store[i] == 0 && (i + 1) % k == 0) return i + 1;
         }
-        while(n < 100) {
+        while(n <= 100) {
             n += k;
         }
         return n;
